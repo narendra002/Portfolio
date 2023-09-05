@@ -1,17 +1,33 @@
-import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button,  NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem} from "@nextui-org/react";
-
+import React, { useState } from "react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link, // Use the Link component from react-router-dom
+  Button,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+} from "@nextui-org/react";
 
 import { AcmeLogo } from "../assets/logo.jsx";
+
 export default function Nav() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
 
   const menuItems = [
-    "Home",
-    "Education",
-    "Projects",
-    "Contact ME",
+    { name: "Home", path: "/" },
+    { name: "Education", path: "/education" },
+    { name: "Projects", path: "/projects" },
+    { name: "Contact Me", path: "/contact_me" },
   ];
+
+  const handleItemClick = (index) => {
+    setActiveItem(index);
+    setIsMenuOpen(false); // Close the mobile menu when a menu item is clicked
+  };
 
   return (
     <Navbar
@@ -19,58 +35,43 @@ export default function Nav() {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="sm:hidden" justify="start" >
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
-      </NavbarContent>
-
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
         <NavbarBrand>
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Home
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Education
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Projects
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Contact Me
-          </Link>
-        </NavbarItem>
+        {menuItems.map((item, index) => (
+          <NavbarItem key={index}>
+            <Link
+              to={item.path}
+              color={activeItem === index ? "primary" : "foreground"}
+              className="cursor-pointer"
+              onClick={() => handleItemClick(index)}
+            >
+              {item.name}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
 
-     
-
       <NavbarMenu>
+        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
-              className="w-full"
+              to={item.path}
               color={
-                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
+                index === 2
+                  ? "warning"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
               }
-              href="#"
+              className="cursor-pointer"
               size="lg"
+              onClick={() => handleItemClick(index)}
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

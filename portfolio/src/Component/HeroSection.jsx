@@ -4,7 +4,7 @@ import { Github, Linkedin } from '../assets/logo'; // Assuming Github and Linked
  // Adjust the
 function HeroSection() {
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="bg-gray-100 py-14">
       <div className="container mx-auto flex flex-col-reverse sm:flex-row items-center justify-between">
         <div className="sm:w-1/2">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
