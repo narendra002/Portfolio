@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link, // Use the Link component from react-router-dom
-  Button,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-
-import { AcmeLogo } from "../assets/logo.jsx";
+import { Link, useLocation } from "react-router-dom";
+import { AcmeLogo } from "./AcmeLogo.jsx";
 
 export default function Nav() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation(); // Get the current location (route)
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -24,30 +22,36 @@ export default function Nav() {
     { name: "Contact Me", path: "/contact_me" },
   ];
 
-  const handleItemClick = (index) => {
-    setActiveItem(index);
-    setIsMenuOpen(false); // Close the mobile menu when a menu item is clicked
-  };
-
   return (
     <Navbar
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="hidden sm:flex gap-4" justify="start">
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
+      </NavbarContent>
+
+      <NavbarContent className="sm:hidden pr-3" justify="center">
+        <NavbarBrand>
+          <AcmeLogo />
+          <p className="font-bold text-inherit">ACME</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="end">
         <NavbarBrand>
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         {menuItems.map((item, index) => (
-          <NavbarItem key={index}>
-            <Link
-              to={item.path}
-              color={activeItem === index ? "primary" : "foreground"}
-              className="cursor-pointer"
-              onClick={() => handleItemClick(index)}
-            >
+          <NavbarItem
+            key={index}
+            className={location.pathname === item.path ? "text-primary" : ""}
+          >
+            <Link color="foreground" to={item.path}>
               {item.name}
             </Link>
           </NavbarItem>
@@ -55,11 +59,10 @@ export default function Nav() {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item.name}-${index}`}>
+          <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              to={item.path}
+              className="w-full"
               color={
                 index === 2
                   ? "warning"
@@ -67,9 +70,8 @@ export default function Nav() {
                   ? "danger"
                   : "foreground"
               }
-              className="cursor-pointer"
+              to={item.path}
               size="lg"
-              onClick={() => handleItemClick(index)}
             >
               {item.name}
             </Link>
