@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Designer from '../assets/Designer.svg';
 import Hosting from '../assets/Hosting.svg';
 import {
@@ -12,14 +13,46 @@ import {
 } from '../assets/logo';
 
 function Skills() {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
+  };
+
   return (
-    <section className="bg-gray-100 py-5">
-      <h1 className="font-bold text-center text-3xl sm:text-4xl md:text-5xl">
+    <motion.section
+      className="bg-gray-100 py-5"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.h1
+        className="font-bold text-center text-3xl sm:text-4xl md:text-5xl"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, transition: { duration: 0.5 } }}
+      >
         What I Do?
-      </h1>
+      </motion.h1>
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center justify-center">
-        {/* Left Side (Skills Details) */}
-        <div className="lg:w-1/2 p-4">
+        {/* Left Side (Designer Image) */}
+        <motion.div
+          className="lg:w-1/2 p-4"
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+        >
+          <img
+            src={Designer}
+            alt="Designer Illustration"
+            className="mx-auto max-w-full h-auto mix-blend-multiply image-animate"
+          />
+        </motion.div>
+
+        {/* Right Side (Skills Details) */}
+        <motion.div
+          className="lg:w-1/2 p-4"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, transition: { duration: 2.5 } }}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Full Stack Web Developer
           </h2>
@@ -60,22 +93,30 @@ function Skills() {
             </li>
             {/* Add more skills as needed */}
           </ul>
-        </div>
-
-        {/* Right Side (Image) */}
-        <div className="lg:w-1/2 p-4">
-          <img
-            src={Designer}
-            alt="Designer Illustration"
-            className="mx-auto max-w-full h-auto mix-blend-multiply image-animate"
-          />
-        </div>
+        </motion.div>
       </div>
 
       {/* Additional Section */}
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center justify-center mt-5">
-        {/* Left Side (Skills Details) */}
-        <div className="lg:w-1/2 p-4">
+        {/* Left Side (Hosting Image) */}
+        <motion.div
+          className="lg:w-1/2 p-4 sm:w-1/2 mt-8 sm:mt-0"
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+        >
+          <img
+            src={Hosting}
+            alt="Hosting Illustration"
+            className="mx-auto max-w-full h-auto mix-blend-multiply image-animate"
+          />
+        </motion.div>
+
+        {/* Right Side (Cloud Infra-Architecture Details) */}
+        <motion.div
+          className="lg:w-1/2 p-4"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Cloud Infra-Architecture
           </h2>
@@ -112,19 +153,9 @@ function Skills() {
               ⚡ Streamlining continuous deployment with Vercel and Firebase for efficient updates and scaling.
             </li>
           </ul>
-
-        </div>
-
-        {/* Right Side (Image) */}
-        <div className="lg:w-1/2 p-4 sm:w-1/2 mt-8 sm:mt-0">
-          <img
-            src={Hosting}
-            alt="Hosting Illustration"
-            className="mx-auto max-w-full h-auto mix-blend-multiply image-animate"
-          />
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

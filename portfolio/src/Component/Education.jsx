@@ -63,53 +63,61 @@ function Education() {
           </div>
         </div>
       </section>
-      <div className="grid justify-center bg-gray-100">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 py-5 text-center">
-          Degree Received
-        </h2>
-        <Card className="max-w-[900px] bg-gray-100 py-4">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="college logo"
-              height={40}
-              radius="sm"
-              src={logomit} // Replace with the actual path to your college logo
-              width={40}
-            />
-            <div className="flex flex-col">
-              <p className="text-md">
-                Mahakal Institute of Technology and Management Ujjain
+      <div className="flex flex-col items-center space-y-4 bg-gray-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Degree Received
+          </h2>
+          <Card className="max-w-[900px] bg-gray-100 py-4">
+            <CardHeader className="flex gap-3">
+              <Image
+                alt="college logo"
+                height={40}
+                radius="sm"
+                src={logomit} // Replace with the actual path to your college logo
+                width={40}
+              />
+              <div className="flex flex-col">
+                <p className="text-md">
+                  Mahakal Institute of Technology and Management Ujjain
+                </p>
+                <p className="text-small text-default-500">
+                  http://www.mitujjain.ac.in/
+                </p>
+              </div>
+            </CardHeader>
+            <Divider />
+            <CardBody>
+              <p>
+                ⚡ During my B.Tech in Computer Science, I covered a wide range
+                of subjects including Data Structures (DS), Algorithms, Database
+                Management Systems (DBMS), Operating Systems (OS), Computer
+                Networks (CN), and Theory of Computation (TOC).
+                <br />
+                <br />
+                ⚡ Additionally, I delved into various advanced topics related
+                to Full Stack Development, where I learned about web
+                development, server-side programming, front-end technologies, and
+                building dynamic web applications.
+                <br />
+                <br />
+                ⚡ My coursework also included practical projects, labs, and
+                assignments that provided hands-on experience in applying these
+                concepts to real-world scenarios, equipping me with valuable
+                skills for software development.
               </p>
-              <p className="text-small text-default-500">
-                http://www.mitujjain.ac.in/
-              </p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-  <p >
-    ⚡ During my B.Tech in Computer Science, I covered a wide range of subjects including Data Structures (DS), Algorithms, Database Management Systems (DBMS), Operating Systems (OS), Computer Networks (CN), and Theory of Computation (TOC).
-    <br />
-    <br />
-    ⚡ Additionally, I delved into various advanced topics related to Full Stack Development, where I learned about web development, server-side programming, front-end technologies, and building dynamic web applications.
-    <br />
-    <br />
-    ⚡ My coursework also included practical projects, labs, and assignments that provided hands-on experience in applying these concepts to real-world scenarios, equipping me with valuable skills for software development.
-  </p>
-</CardBody>
-
-          <Divider />
-          <CardFooter>
-            <Link
-              isExternal
-              showAnchorIcon
-              href="http://www.mitujjain.ac.in/"
-            >
-              Visit College Website.
-            </Link>
-          </CardFooter>
-        </Card>
-      </div>
+            </CardBody>
+            <Divider />
+            <CardFooter>
+              <Link
+                isExternal
+                showAnchorIcon
+                href="http://www.mitujjain.ac.in/"
+              >
+                Visit College Website.
+              </Link>
+            </CardFooter>
+          </Card>
+        </div>
     </>
   );
 }

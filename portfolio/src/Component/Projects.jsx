@@ -37,16 +37,16 @@ const projectsData = [
 function Projects() {
   return (
     <section className="bg-gray-100 py-14">
-      <div className="container mx-auto flex flex-col-reverse sm:flex-row items-center justify-between">
+      <div className="container mx-auto flex flex-col-reverse sm:flex-row items-center justify-center">
         <div className="sm:w-1/2 mt-8 sm:mt-0 mix-blend-multiply">
           {/* On small screens, move the image below */}
           <img src={Project} alt="Projects Illustration" className="mx-auto" />
         </div>
-        <div className="sm:w-1/2">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+        <div className="sm:w-1/2 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-800">
             Projects
           </h1>
-          <p className="text-base sm:text-lg md:text-xl font-light mb-8 text-gray-700">
+          <p className="text-base sm:text-lg md:text-xl font-bold text-gray-600 mb-8">
             My projects encompass a wide array of modern technology tools. I specialize in creating React applications and efficiently deploying them to web platforms using robust cloud infrastructure.
           </p>
         </div>
@@ -58,7 +58,7 @@ function Projects() {
             <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 cursor-pointer">
               <a href={project.link} target="_blank" rel="noopener noreferrer">
                 <div className="p-6">
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-gray-800">
                     {project.name}
                   </h1>
                   <div className="flex items-center justify-evenly space-x-4">
@@ -76,16 +76,16 @@ function Projects() {
                         {tech === 'Socket.io' && <img 
                         width={65} height={65}  src="https://www.cdnlogo.com/logos/s/14/socket-io.svg" />}
                         { tech === 'MongoDB' &&    <img
-              width="64"
-              height="64"
-              src="https://img.icons8.com/nolan/64/mongo-db.png"
-              alt="mongo-db"
-            />}
+                          width="64"
+                          height="64"
+                          src="https://img.icons8.com/nolan/64/mongo-db.png"
+                          alt="mongo-db"
+                        />}
                         {/* Add more technologies as needed */}
                       </div>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4">
+                  <p className="text-base sm:text-lg md:text-xl font-bold text-gray-600 mb-8">
                     {project.description}
                   </p>
                   <p className="text-sm text-blue-500 hover:underline">
@@ -96,9 +96,7 @@ function Projects() {
             </div>
           </div>
         ))}
-       
-      </div> 
-      
+      </div>
     </section>
   );
 }
